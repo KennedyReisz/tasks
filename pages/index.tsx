@@ -47,9 +47,11 @@ const Home = () => {
           value={taskDate}
           onChange={(e) => setTaskDate(e.target.value)}
           min="2023-01-01"
-          max="2023-12-12"
+          max="2023-31-12"
           required
         />
+        <p>Descrição do lembrete</p>
+        <textarea cols={30} rows={10}></textarea>
         <button
           style={
             createButtonEnabled
@@ -66,7 +68,15 @@ const Home = () => {
           <div key={index} className={styles.taskItem}>
             <h2>{task.name}</h2>
             <h2>{task.date}</h2>
-            <button onClick={() => alert(index)}>Deletar</button>
+            <button
+              onClick={() => {
+                const newTasks = [...tasks];
+                newTasks.splice(index, 1);
+                setTasks(newTasks);
+              }}
+            >
+              Deletar
+            </button>
           </div>
         ))}
       </div>
